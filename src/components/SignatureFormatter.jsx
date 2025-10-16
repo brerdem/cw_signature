@@ -28,10 +28,10 @@ const ButtonLine = styled.div`
 `;
 
 const Template = ({
-                      name,
-                      job,
-                      phone
-                  }) => `<table width="427" cellspacing="0" cellpadding="0" border="0">
+  name,
+  job,
+  phone,
+}) => `<table width="427" cellspacing="0" cellpadding="0" border="0">
 <tbody style="font-family:Arial;text-align:left">
 <tr>
   <td style="vertical-align: top; text-align:left;color:#222222;font-size:13px;line-height: 1.5;font-family:Arial,sans-serif; text-align:left">
@@ -45,9 +45,14 @@ const Template = ({
      
     </td>
   </tr>
+  <tr style="height:10px"> 
+  </tr>
   <tr style="height:50px">
     <td style="vertical-align: center;text-align:left;color:#9a9a9a;font-size:13px;font-family:Arial,sans-serif; text-align:left">
-    Hakkı Yeten Cad. Selenium Plaza No:10 Kat:5 Beşiktaş - İstanbul, 34349
+    <b>The Hood - Tekmer</b><br/>
+    Maslak Mahallesi AOS 55. Sokak 42 Maslak A Blok No:2 İç Kapı Nor: 208 
+    <br/>
+    Sarıyer / İstanbul 34485
     </td>
   </tr>
   <tr>
@@ -125,38 +130,38 @@ This mail (electronic mail and its attachments) is private and confidential to t
 </table>`;
 
 const SignatureFormatter = ({ user }) => {
-    const [userInfo, setUserInfo] = useState(user);
+  const [userInfo, setUserInfo] = useState(user);
 
-    const handleSaveFile = () => {
-        saveAs(
-            new Blob([Template(userInfo)], { type: "text/html;charset=utf-8" }),
-            "index.html"
-        );
-    };
-
-    useEffect(() => {
-        setUserInfo(user);
-    }, [user]);
-
-    const Result = Template(userInfo);
-
-    return (
-        <Wrapper>
-            <EmailExample dangerouslySetInnerHTML={{ __html: Result }} />
-            <ButtonLine>
-                <button onClick={handleSaveFile}>HTML KAYDET</button>
-            </ButtonLine>
-            <EmailResult readonly rows="30" value={Result} />
-        </Wrapper>
+  const handleSaveFile = () => {
+    saveAs(
+      new Blob([Template(userInfo)], { type: "text/html;charset=utf-8" }),
+      "index.html"
     );
+  };
+
+  useEffect(() => {
+    setUserInfo(user);
+  }, [user]);
+
+  const Result = Template(userInfo);
+
+  return (
+    <Wrapper>
+      <EmailExample dangerouslySetInnerHTML={{ __html: Result }} />
+      <ButtonLine>
+        <button onClick={handleSaveFile}>HTML KAYDET</button>
+      </ButtonLine>
+      <EmailResult readonly rows="30" value={Result} />
+    </Wrapper>
+  );
 };
 
 SignatureFormatter.propTypes = {
-    user: shape({
-        name: string.isRequired,
-        job: string.isRequired,
-        phone: string
-    }).isRequired
+  user: shape({
+    name: string.isRequired,
+    job: string.isRequired,
+    phone: string,
+  }).isRequired,
 };
 
 export default SignatureFormatter;

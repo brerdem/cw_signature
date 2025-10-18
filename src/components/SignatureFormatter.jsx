@@ -113,7 +113,7 @@ const Template = ({
       href="https://www.clockwork.com.tr"
       target="_blank"
       rel="noopener noreferrer">  
-        <img width="500" height="122" src="https://www.clockwork.com.tr/signature_assets/banner.jpg" alt="Clockwork" style="border:none;" />
+        <img width="500" height="122" src="https://www.clockwork.com.tr/signature_assets/banner.jpg?${Math.random()}" alt="Clockwork" style="border:none;" />
       </a>
     </td>
   </tr>
